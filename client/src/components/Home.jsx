@@ -53,7 +53,7 @@ export default function Home() {
     }
 
     function handleFilterTemperament(e) {
-        e.preventDefault();
+       console.log(e.target.value)
         dispatch(filterByTemperament(e.target.value));
         setCurrentPage(1);
         setOrden(e.target.value);

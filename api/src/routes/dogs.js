@@ -7,9 +7,11 @@ router.get('/', async (req, res) => {
     const { name } = req.query; 
     try {
     let allDogs = await getAllData();
+
     if (name) {
-      let searchedGame = allDogs.filter((game) => 
-        game.name.toLowerCase().includes(name.toLowerCase()));
+      let searchedGame = allDogs.filter((breed) => 
+        breed.name.toLowerCase().includes(name.toLowerCase()));
+
       if (searchedGame.length >= 1) return res.status(200).send(searchedGame) 
       res.status(404).send("Breed does not exist")
     } else {
@@ -17,7 +19,7 @@ router.get('/', async (req, res) => {
       res.status(200).json(allDogs)
     }
     } catch (error) {
-      res.status(500).json("Get Breed Route Problems"); 
+      res.status(404).json("Get Breed Route Problems"); 
     }
   });
 
@@ -103,10 +105,10 @@ router.get('/:idRaza', async (req,res)=> {  // ruta para encontrar una raza en p
 
 
 router.post('/', async (req,res) =>{
-    const {name, height, weight, life_span, temperaments, created}= req.body; //!! temperaments es un array
+    const {name, height, weight, life_span, temperaments}= req.body; //!! temperaments es un array
     
     if (!name || !height || !weight || !life_span || !temperaments){ //database validation 
-        return res.send('faltan datos ')
+        return res.send('data missing backend ')
     }
     name=capitalizar(name);  //fc q capitaliza string
     try{

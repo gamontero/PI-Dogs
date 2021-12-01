@@ -32,16 +32,16 @@ function rootReducer(state = initialState, action) {
       };
 
 
-    case "POST_VIDEOGAME": // creo que puedo borrar esto 
+    case "POST_VIDEOGAME": 
       return {
         ...state,
 
       };
 
 
-    case "FILTER_BY_TEMPERAMENT": // logica siempre antes del return 
+    case "FILTER_BY_TEMPERAMENT": 
      
-      const breedFiltered = action.payload === "all" ? state.allBreeds : state.reducerBreeds.filter((g) => g.allTemperaments.includes(action.payload))
+      let breedFiltered = action.payload === "all" ? state.allBreeds : state.allBreeds.filter((g) => g.temperament?.includes(action.payload));
       return {
         ...state,
         reducerBreeds: breedFiltered,

@@ -22,7 +22,7 @@ export function getVideoGames() {
   export function getBreedbyName(name) {
     return async function (dispatch) {
       try {
-        var json = await axios.get("/breed?name=" + name);
+        var json = await axios.get(`/dogs?name=${name}`);
 
         return dispatch({
           type: "GET_NAME_BREED",
@@ -47,6 +47,7 @@ export function getVideoGames() {
   }
 
   export function postBreed(payload) {
+    
     return async function () {
       try {
         const response = await axios.post("/dogs", payload);
@@ -66,9 +67,7 @@ export function getVideoGames() {
   }
 
   export function filterByTemperament(payload) {
- 
-   console.log(payload)
-    return {
+     return {
       type: "FILTER_BY_TEMPERAMENT",
       payload,
 
@@ -92,7 +91,7 @@ export function getVideoGames() {
   }
 
   export function orderByWeight(payload) {
-    console.log(payload)
+    
     return {
       type: "ORDER_BY_WEIGHT",
       payload,

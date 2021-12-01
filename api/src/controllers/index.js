@@ -15,7 +15,7 @@ const getInfoAPI = async () => {  // Fc para obtener todas las razas de la API
                 height: el.height.imperial,
                 image: el.image.url,
                 life_span: el.life_span,
-                temperament: el.temperament,
+                temperament: [el.temperament].join().split(",").map((el) => el.trim()),
                 weight: el.weight.imperial,
                 origen: el.origin,
             }

@@ -27,7 +27,7 @@ export default function Card({ name, image, temperament, id, weight }) {
         </Link>
 
         <div className={styles.titleName}>{name}</div>
-        <div className={styles.text}>Temperament: {temperament}</div>
+        <div className={styles.text}>Temperament(s): {temperament?.map((g) => g + " ")}</div>
         <div className={styles.text}>Weight (metric): {weight}</div>
 
       </ul>
