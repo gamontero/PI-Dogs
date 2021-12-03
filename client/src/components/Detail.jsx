@@ -15,7 +15,8 @@ useEffect(() => {
     dispatch(getDetail(id));
   }, [id, dispatch]);
   var detail = useSelector((state) => state.detail);
-  
+  console.log(typeof(detail))
+  console.log(Array.isArray(detail))
 
 const defaultImage = "https://cdnb.artstation.com/p/assets/images/images/036/628/681/4k/ivanov-alvarado-arcade-stylized-video-game-asset-1.jpg?1618196293"
 

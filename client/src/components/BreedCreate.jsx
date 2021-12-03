@@ -229,7 +229,7 @@ export default function GameCreated() {
               type="reset" 
               value = "create another breed"
               onClick = {clearForm}>
-                Create Another Breed
+                Clear Form
               </button>
             </div>
         </span> 

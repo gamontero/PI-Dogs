@@ -12,7 +12,8 @@ export default function Home() {
     
     const dispatch = useDispatch();
     const allBreeds = useSelector((state) => state.reducerBreeds); 
-    const allTemperaments = useSelector((state) => state.allTemperaments);
+    const ReducerTemperaments = useSelector((state) => state.allTemperaments);
+    const allTemperaments = ReducerTemperaments.map((g) => g.name);
    
     
     const [_order, setOrden] = useState("");

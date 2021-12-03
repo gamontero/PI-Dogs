@@ -13,7 +13,7 @@ export function getVideoGames() {
 
       })
       .catch((error) => {
-        alert("Get VideoGames not Working", error)
+        alert("Get Breed not Working", error)
       }
       )
   }
@@ -41,19 +41,20 @@ export function getVideoGames() {
         return dispatch({ type: "GET_TEMPERAMENTS", 
         payload: info.data });
       } catch (error) {
-        alert("Genre Not Found")
+        alert("Temperament Not Found")
       }
     }
   }
 
   export function postBreed(payload) {
-    
+  
     return async function () {
       try {
-        const response = await axios.post("/dogs", payload);
+        const response = await axios.post("/createBreed", payload);
+       
         return response;
       } catch (error) {
-        alert("Post Not Working")
+        alert("Post Not Working action")
       }
     }
   }
@@ -102,14 +103,13 @@ export function getVideoGames() {
      if (id) {
       return async function (dispatch) {
         try {
-          let gameDetail = await axios.get("/dogs/" + id);
-          
-          return dispatch({
+          let payload = await axios.get("/dogs/" + id);
+            return dispatch({
             type: "GET_DETAIL",
-            payload: gameDetail.data,
+            payload: payload.data,
           });
         } catch (error) {
-          alert("Game Not Found Front", error)
+          alert("Breed Not Found Front", error)
         }
       };
     }

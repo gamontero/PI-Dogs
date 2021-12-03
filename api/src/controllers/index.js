@@ -32,7 +32,21 @@ const getDBInfo = async () => {     // fc para obtener todos las razas de la B D
         const dogsDB =  await Dog.findAll({
             include: Temperament
         });   
-        const dbDatos=dogsDB.map(d => d.dataValues);//(obtener solo el DataValue de cada obj de dogsDB)
+        console.log(dogsDB)
+        const dbDatos=dogsDB.map(g => {
+            return {
+               id: g.dataValues.id,
+               name: g.dataValues.name,
+               height: g.dataValues.height,
+               weight: g.dataValues.weight, 
+               life_span: g.dataValues.life_span,
+               createdID: g.dataValues.createdID,
+               temperament: g.dataValues.temperaments.map(g => g.name)
+            }
+           
+
+        });
+        console.log(dbDatos)
         return dbDatos;    
     } catch (e) {
         return('No se pudo acceder a la BD',e)        
@@ -63,25 +77,30 @@ const getOneByIdAPI = async function(idRaza){  // funcion que busca una raza x i
 
 const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD x id UUIV
     try {
-        var oneDogBD= await Dog.findByPk(idRaza, {
-            include: Temperament
-        }); 
+        var oneDogBD= [await Dog.findOne({
+            where: {id: idRaza},
+            include: Temperament,
+        })]
         if(oneDogBD){  
-            var tp= oneDogBD.Temperaments.map( t => t.dataValues.nameTemp);//guerda los temps asociados en un array(tp)
-            
-            var dogDetail= {  //seteo un objeto ppara devolver los datos listos
-                name: oneDogBD.name,
-                height: oneDogBD.height,
-                weight: oneDogBD.weight,
-                life_span: oneDogBD.life_span,
-                temperament: tp.join(', '),//al array tp , lo muestra como string
-                image: oneDogBD.image
-            } 
-            
-            return dogDetail;  
+           console.log(oneDogBD)
+            const dbDatos=oneDogBD.map(g => {
+                return {
+                   id: g.dataValues.id,
+                   name: g.dataValues.name,
+                   height: g.dataValues.height,
+                   weight: g.dataValues.weight, 
+                   life_span: g.dataValues.life_span,
+                   createdID: g.dataValues.createdID,
+                   temperament: g.dataValues.temperaments.map(g => g.name)
+                }
+    
+            });
+            console.log(dbDatos)
+           
+            return dbDatos;    
         }
     } catch (error) {
-        return null;
+        return ("problems get details by id", error)
     }
     
 }
@@ -107,31 +126,15 @@ const capitalizar = function(str){    // capitaliza un string
 
 const getTempAPI = async () => {  
     try {  
-        const urlApi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-        const tempApi = urlApi.data.map(el => el.temperament) 
-        var tempFiltered = tempApi.filter(function (el) {return el != null;});
-        const tempApi2 = tempFiltered.map(el => el.split(',')).flat()
-        const tempApi3 = [...new Set(tempApi2)]
-        const tempApi4 = tempApi3.map(el => el.trim())
-       
-        return tempApi4;
+        const tempApi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
+        const tempDb = tempApi.data.map( el => el.temperament ).join().split(',')
+        const tempsDbTrim = tempDb.map( el => el.trim())
+        
+        return tempsDbTrim;
     } catch (e) {
         res.status(404).json('Temp Controller problem')   
     }    
 }
-  // var arrayTemp=[];
-        // var arrayTemp2=[]
-        // var long= tempApi.length;
-        // for(var i=0; i<long ;i++){
-        //     if(!tempApi[i]) continue;
-        //     let spl= tempApi[i].split(',');   // un spl es un array de temperamentos de cada dog
-        //     for(var j=0; j<spl.length; j++){
-        //         let tNorm=spl[j].trim();
-        //         if(arrayTemp2.includes(tNorm)) continue; // para que no se repitan los temperamentos
-        //         arrayTemp2.push(tNorm);
-        //         arrayTemp.push({nameTemp: tNorm});
-        //     }
-        // }
 
 module.exports = {
     getInfoAPI,

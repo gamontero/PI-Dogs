@@ -21,7 +21,7 @@ function rootReducer(state = initialState, action) {
     case "GET_TEMPERAMENTS":
       return {
         ...state,
-        allTemperaments: action.payload,
+        allTemperaments: action.payload.map(g => g.name),
           
       };
 
@@ -127,7 +127,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         detail: action.payload,
       };
-
+      // const detailApi = Array.isArray(action.payload) !== true ? state.detail.push(action.payload) : state.detail = action.payload
+      // return {
+      //   ...state,
+      // detail: detailApi
+      // }
 
 
 

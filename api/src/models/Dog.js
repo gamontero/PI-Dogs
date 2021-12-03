@@ -27,13 +27,14 @@ module.exports = (sequelize) => {
     },
 
     life_span: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      allowNull: true, 
 
     },
 
     createdID: { //esto es hecho para mejor diferenciar los elementos de la api con los de la db
       type: DataTypes.BOOLEAN, // Es decir todos los que yo creo, tendran esta propiedad. 
-      allowNull: false,
+      allowNull: true,
       defaultValue: true,
     },
 
