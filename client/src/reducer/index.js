@@ -41,7 +41,7 @@ function rootReducer(state = initialState, action) {
 
     case "FILTER_BY_TEMPERAMENT": 
      
-      let breedFiltered = action.payload === "all" ? state.allBreeds : state.allBreeds.filter((g) => g.temperament?.includes(action.payload));
+      let breedFiltered = action.payload === "all" ? state.allBreeds : state.allBreeds.filter((g) => g.temperament.includes(action.payload));
       return {
         ...state,
         reducerBreeds: breedFiltered,
@@ -123,15 +123,12 @@ function rootReducer(state = initialState, action) {
       };
       
         case "GET_DETAIL":
+       
       return {
         ...state,
         detail: action.payload,
       };
-      // const detailApi = Array.isArray(action.payload) !== true ? state.detail.push(action.payload) : state.detail = action.payload
-      // return {
-      //   ...state,
-      // detail: detailApi
-      // }
+
 
 
 

@@ -1,5 +1,5 @@
 .gameCard {
-    background-color: #2a382e;
+    background-color: #582401;
     display: flex;
     justify-content: center;
     text-decoration: none;
@@ -18,10 +18,11 @@
     border-radius: 10px;
     width: 350px;
     height: 300px;
-    margin-top: 0.5cm;
+    margin-top: 0.1cm;
     text-decoration: none;
-  
+    
       }
+
   .titleName {
     text-align: center;
     font-size: 2.1rem;

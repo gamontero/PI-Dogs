@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-export function getVideoGames() {
+export function getBreeds() {
   return function (dispatch) {
     return axios.get("/dogs")
       .then((response) => {
@@ -47,6 +47,7 @@ export function getVideoGames() {
   }
 
   export function postBreed(payload) {
+    console.log(payload)
   
     return async function () {
       try {

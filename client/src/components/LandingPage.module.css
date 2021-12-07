@@ -1,32 +1,42 @@
 .LandingWelcome {
     margin: 0;
-    color: black;
-    background-color: black;
-    background: url(https://cdna.artstation.com/p/assets/images/images/041/939/644/large/michael-pavlovich-side.jpg?1633114264);
+    
+    background: url("../media/Dog1.jpeg");
     background-size: cover;
+    display: flex;
     height: 100vh;
     max-width: 100%;
-    position:relative
+    position:relative;
+    background-size: 85% 100%;
+    background-repeat: no-repeat;
+    background-position:right;
 }
 
 .textContainer {
-  flex-wrap: wrap;
-  justify-content: center;
+  
+  
   text-align: center;
+
+  background-color:rgb(58, 36, 25);
   color:white;
-  padding: 0;
-  margin-left: 80%;
-  margin-top: 20% ;
-  margin-right: 2%;
-  position: absolute;
-  font-size: 20px;
+  display: flex;
+  border: 2px solid black;
+  position: relative;
+  font-size: 16px;
       font-family: 'Staatliches';
-      font-weight: bold;
+      
       
 
 }
 
+.container { 
+justify-content: center;
+flex-direction: column;
+align-items: left;
+position: relative;
+display: flex;
 
+}
 
 .bn1 {
     -webkit-touch-callout: none;
@@ -48,9 +58,7 @@
       letter-spacing: 5px;
       background: #ffc421;
       border: 2px solid black;
-      margin-left: 86%;
-      margin-top: 35% ;
-      
+     
 }
   
 .bn1:after {

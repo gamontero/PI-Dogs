@@ -14,15 +14,25 @@ const dispatch = useDispatch();
 useEffect(() => {
     dispatch(getDetail(id));
   }, [id, dispatch]);
-  var detail = useSelector((state) => state.detail);
-  console.log(typeof(detail))
-  console.log(Array.isArray(detail))
+
+
+  let detail = useSelector((state) => state.detail);
+
+console.log(Array.isArray(detail));
+console.log(detail)
+console.log(detail[0])
+
+  if (Array.isArray(detail) === true)  {
+    detail = detail[0]
+  } 
+  console.log(detail)
+  
 
 const defaultImage = "https://cdnb.artstation.com/p/assets/images/images/036/628/681/4k/ivanov-alvarado-arcade-stylized-video-game-asset-1.jpg?1618196293"
 
 return (
     <div>
-      {detail.length === 0 ? (
+      {!detail ? (
         <div>
         <div><NavBar/></div>
           <p>...Loading</p>
@@ -34,17 +44,20 @@ return (
           <NavBar/>
         </div>
 
-        <div className={styles.detailContainer}>
+        <div className={styles.mainContainer}>
+          <div className={styles.detailContainer}>
+            <div className={styles.imageContainer}>
           <img src={detail.image || defaultImage} className={styles.imgDetail}  alt="img not found"
                 />
-          <div>
+            </div>
+          <div className={styles.textContainer}>
             <p>
               <strong>Name: </strong> {detail.name}
             </p>
 
             <p>
               <strong>Temperament: </strong>
-              {detail.temperament}
+              {detail.temperament + ', '}
             </p>
 
             <p>
@@ -65,7 +78,9 @@ return (
            </div>
         </div>
         </div>
+        </div>
       )}
+      
     </div>
     
   );

@@ -6,12 +6,13 @@ import styles from "./LandingPage.module.css"
 export default function Landing() { 
     return ( 
         <div className={styles.LandingWelcome}>
+            <div className={styles.container}>
         <div className={styles.textContainer }>
 
-            <h1>Arcade</h1>
-            <p>Welcome to Arcade!
-            A video game library developed as an individual project. 
-            Please take the time to explore the website, search for your favorite games 
+            
+            <p>Welcome to Breeds!
+            A Dog library developed as an individual project. 
+            Please take the time to explore the website, search for your favorite breed 
             or even create your own.
             Have fun! and thank you for the support. </p>
         </div>    
@@ -19,6 +20,7 @@ export default function Landing() {
              <Link to="/home"> 
                  <button className={styles.bn1}> Enter </button>
              </Link>
+            </div>
             </div>
         </div> )
 

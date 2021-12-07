@@ -6,7 +6,8 @@ describe('Dog model', () => {
     .catch((err) => {
       console.error('Unable to connect to the database:', err);
     }));
-  describe('Validators', () => {
+
+describe('Validators', () => {
     beforeEach(() => Dog.sync({ force: true }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
@@ -20,3 +21,31 @@ describe('Dog model', () => {
     });
   });
 });
+
+describe(' create dogs ', () => {
+  beforeEach(()=> {
+    Dog.bulkCreate(dogs)
+  })
+
+  describe('search dog', () => {
+    
+    it('length db', done => {
+      Dog.findAll()
+      .then(r => expect(r.length).to.be(2))    
+      .catch(() => done())
+    });
+
+    it('name Dog', done => {
+      Dog.findAll()
+      .then(r => expect(r[0].name).to.be.true('ChupaHuevo'))
+      .catch(() => done())
+    });
+    
+    it('fake name Dog', done => {
+      Dog.findAll()
+      .then(r => expect(r[1].name).to.be.false('ChupaHuevo'))
+      .catch(() => done())
+    });
+  })
+})
+

@@ -6,21 +6,88 @@ import NavBar from "./NavBar";
 
 function validate(input) {
   let errorValidate = {};
+  var letters = /^[A-Za-z]+$/;
+
+  //name validation
   if (!input.name.trim()) {
     errorValidate.name = "Name required";
   }
-  if (!input.height) {
-    errorValidate.height = "height required";
+  else if ( input.name.length > 30) { 
+    errorValidate.name = "Name too long. Maximun 30 characters";
   }
-  if (!input.weight) {
-    errorValidate.weight = "Weight required";
+  else if (!input.name.match(letters)) {
+    errorValidate.name = "Only letters allowed";
   }
-  if (!input.life_span) {
-    errorValidate.life_span = "Life span required";
+
+  //height validation
+  else if (!input.heightMin) {
+    errorValidate.heightMin = "Minimum height required";
   }
-  if (!input.temperaments.length) {
-    errorValidate.temperaments = "Temperament(s) selection required";
+  else if (isNaN(parseInt(input.heightMin))) {
+    errorValidate.heightMin = 'Minimum height must be a number';
   }
+  else if (input.heightMin <= 0) {
+    errorValidate.heightMin = 'Your breed can´t be shorter than or equal to 0';
+  }
+  else if (!input.heightMax) {
+    errorValidate.heightMax = 'Maximum height is required!!';
+  }
+  else if (isNaN(parseInt(input.heightMax))) {
+    errorValidate.heightMax = 'Maximum height must be a number';
+  }
+  else if (input.heightMax > 150) {
+    errorValidate.heightMax = 'number too large, 150 maximun allowed';
+  }
+  else if (parseInt(input.heightMin) >= parseInt(input.heightMax)) {
+    errorValidate.heightMin = 'Minimum height should be lower than maximum height';
+  }
+
+  //weight validation  
+  else if (!input.weightMin) {
+    errorValidate.weightMin = "Minimum weight required";
+  }
+  else if (isNaN(parseInt(input.weightMin))) {
+    errorValidate.weightMin = 'Minimum weight must be a number';
+  }
+  else if (input.weightMin <= 0) {
+    errorValidate.weightMin = 'Your breed can´t weight less than or equal to 0';
+  }
+  else if (!input.weightMax) {
+    errorValidate.weightMax = 'Maximum weight is required!!';
+  }
+  else if (isNaN(parseInt(input.weightMax))) {
+    errorValidate.weightMax = 'Maximum weight must be a number';
+  }
+  else if (input.weightMax > 200) {
+    errorValidate.weightMax = 'number too large, 200 maximun allowed';
+  }
+  else if (parseInt(input.weightMin) >= parseInt(input.weightMax)) {
+    errorValidate.weighttMax = 'Minimum weight must be lower than maximum weight';
+  }
+//life span validation  
+  else if (!input.life_spanMin) {
+    errorValidate.life_spanMin = 'Minimum life is required!!';
+  }
+  else if (!input.life_spanMax) {
+    errorValidate.life_spanMax = 'Maximum life is required!!';
+  }
+  else if (isNaN(parseInt(input.life_spanMin))) {
+    errorValidate.life_spanMin = 'Minimum life should be a number';
+  }
+  else if (isNaN(parseInt(input.life_spanMax))) {
+    errorValidate.life_spanMax = 'Maximum life should be a number';
+  }
+  else if (input.life_spanMax > 40) {
+    errorValidate.life_spanMax = "number too large, 40 maximun allowed";
+  }
+  else if (input.life_spanMin <= 0) {
+    errorValidate.life_spanMin = 'Your breed life must be greater than 0';
+  }
+  else if (parseInt(input.life_spanMin) >= parseInt(input.life_spanMax)) {
+    errorValidate.life_spanMax = 'Minimum life must be lower than maximum life';
+  }
+
+  
 
   return errorValidate;
 }
@@ -31,9 +98,12 @@ export default function GameCreated() {
   const [error, setError] = useState({});
   const [input, setInput] = useState({
     name: "",
-    height: "",
-    weight: "",
-    life_span: "",
+    heightMin: "",
+    heightMax: "",
+    weightMin: "",
+    weightMax: "",
+    life_spanMin: "",
+    life_spanMax: "",
     temperaments: [],
    
   });
@@ -81,11 +151,13 @@ export default function GameCreated() {
   function clearForm() { // limpia el Form y los errores, cdo se quiere crear otra raza
     setInput({
       name: "",
-      height: "",
-      weight: "",
-      life_span: "",
+      heightMin: "",
+      heightMax: "",
+      weightMin: "",
+      weightMax: "",
+      life_spanMin: "",
+      life_spanMax: "",
       temperaments: [],
-      
     });
 
     setError({});
@@ -100,21 +172,23 @@ export default function GameCreated() {
       })
     );
     
-    if (Object.keys(error).length === 0) {
-      
+    if (!Object.getOwnPropertyNames(error).length && input.name && input.heightMin && input.heightMax && input.weightMin && input.weightMax && input.life_spanMin && input.life_spanMax && input.temperaments.length) {
+      console.log(input)
       dispatch(postBreed(input));
-      e.target.reset();
       alert("Breed created!");
       setInput({
-        name: "",
-        height: "",
-        weight: "",
-        life_span: "",
-        temperaments: [],
+      name: "",
+      heightMin: "",
+      heightMax: "",
+      weightMin: "",
+      weightMax: "",
+      life_spanMin: "",
+      life_spanMax: "",
+      temperaments: [],
        
       });
     } else {
-      alert("Incomplete information");
+      alert("Incomplete information, breed can´t be created without it");
       return;
     }
   }
@@ -133,8 +207,9 @@ export default function GameCreated() {
           >
             <div>
               <label className={styles.label}>Name: </label>
+              <div  className={styles.formStyle}>
               <input
-                className={styles.formStyle}
+               
                 type="text"
                 value={input.name}
                 name="name"
@@ -143,64 +218,115 @@ export default function GameCreated() {
                 onChange={(e) => handleChange(e)}
               />
               {error.name && <p className={styles.errors}>{error.name}</p>}
+               </div>
             </div>
-
             <div>
-              <label className={styles.label}>Height: </label>
+              <label className={styles.label}>Height Min: </label>
+              <div className={styles.formStyle}>
               <input
-                className={styles.formStyle}
+                
                 type="text"
-                value={input.height}
-                name="height"
-                placeholder="00-90 [min height (cm) - max height (cm)]"
-                pattern="[0-9]{1,2}[-][0-9]{1,2}"
-                title="numbers only (example: 0-90)"
+                value={input.heightMin}
+                name="heightMin"
+                // placeholder="00-90 [min height (cm) - max height (cm)]"
+                // pattern="[0-9]{1,2}[-][0-9]{1,2}"
+                // title="numbers only (example: 0-90)"
                 onChange={(e) => handleChange(e)}
               />
-              {error.height && (<p className={styles.errors}>{error.height}</p>)}
+              {error.heightMin && (<p className={styles.errors}>{error.heightMin}</p>)}
+            </div>
+            </div>
+            <div>
+              <label className={styles.label}>Height Max: </label>
+              <div className={styles.formStyle}>
+              <input
+                
+                type="text"
+                value={input.heightMax}
+                name="heightMax"
+                // placeholder="00-90 [min height (cm) - max height (cm)]"
+                // pattern="[0-9]{1,2}[-][0-9]{1,2}"
+                // title="numbers only (example: 0-90)"
+                onChange={(e) => handleChange(e)}
+              />
+              {error.heightMax && (<p className={styles.errors}>{error.heightMax}</p>)}
+            </div>
             </div>
 
             <div>
-              <label className={styles.label}>Weight: </label>
+              <label className={styles.label}>Weight Min: </label>
               <div className={styles.formStyle}>
                   
                     <input
-                      
                       type="text"
-                      name="weight"
-                      value={input.weight}
-                      placeholder="00-90 [min weight (Kg) - max weight (Kg)]"
-                      pattern="[0-9]{1,2}[-][0-9]{1,2}"
-                      title="numbers only (example: 0-90)"
+                      name="weightMin"
+                      value={input.weightMin}
+                      // placeholder="00-90 [min weight (Kg) - max weight (Kg)]"
+                      // pattern="[0-9]{1,2}[-][0-9]{1,2}"
+                      // title="numbers only (example: 0-90)"
                       onChange={(e) => handleChange(e)}
                     />                   
-                {error.weight && (<p className={styles.errors}>{error.weight}</p>)}
+                {error.weightMin && (<p className={styles.errors}>{error.weightMin}</p>)}
+              </div>
+            </div>
+            <div>
+              <label className={styles.label}>Weight Max: </label>
+              <div className={styles.formStyle}>
+                  
+                    <input
+                      type="text"
+                      name="weightMax"
+                      value={input.weightMax}
+                      // placeholder="00-90 [min weight (Kg) - max weight (Kg)]"
+                      // pattern="[0-9]{1,2}[-][0-9]{1,2}"
+                      // title="numbers only (example: 0-90)"
+                      onChange={(e) => handleChange(e)}
+                    />                   
+                {error.weightMax && (<p className={styles.errors}>{error.weightMax}</p>)}
               </div>
             </div>
 
             <div>
-              <label className={styles.label}>Life Span: </label>
+              <label className={styles.label}>Life Min: </label>
               <div className={styles.formStyle}>
               <input
                
                 type="text"
-                value={input.life_span}
-                name="life_span"
-                placeholder="min 1, max 25"
-                pattern="[0-9]{1,2}"
-                title="numbers from 1 to 2 only. (example 15)"
+                value={input.life_spanMin}
+                name="life_spanMin"
+                // placeholder="min 1, max 25"
+                // pattern="[0-9]{1,2}"
+                // title="numbers from 1 to 2 only. (example 15)"
                 onChange={(e) => handleChange(e)}
               />
-              {error.life_span && (<p className={styles.errors}>{error.life_span}</p>)}
+              {error.life_spanMin && (<p className={styles.errors}>{error.life_spanMin}</p>)}
             </div>
-            </div>      
+            </div> 
+
+             <div>
+              <label className={styles.label}>Life Max: </label>
+              <div className={styles.formStyle}>
+              <input
+               
+                type="text"
+                value={input.life_spanMax}
+                name="life_spanMax"
+                // placeholder="min 1, max 25"
+                // pattern="[0-9]{1,2}"
+                // title="numbers from 1 to 2 only. (example 15)"
+                onChange={(e) => handleChange(e)}
+              />
+              {error.life_spanMax && (<p className={styles.errors}>{error.life_spanMax}</p>)}
+            </div>
+            </div> 
+
             <div>
                 <label className={styles.label}>Temperament: </label>
                 <select name="temperaments" onChange={(e) => handleSelectTemperaments(e)}>
                      {allTemperaments.map((g) => (             
                          <option value={g} key={g.id}> {g}</option>))} 
                 </select>
-                {error.temperaments && <p className={styles.errors}>{error.temperament}</p>}
+                
              <div className={styles.label}>
              {input.temperaments.map((g) => (
               <div className={styles.te}>

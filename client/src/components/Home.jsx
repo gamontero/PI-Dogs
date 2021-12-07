@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { getVideoGames, getTemperaments, filterCreatedDB, filterByTemperament, orderByName, orderByWeight} from '../actions';
+import { getBreeds, getTemperaments, filterCreatedDB, filterByTemperament, orderByName, orderByWeight} from '../actions';
 import GameCard from './BreedCard'
 import Paginado from './Paginado';
 import NavBar from './NavBar';
@@ -13,7 +13,7 @@ export default function Home() {
     const dispatch = useDispatch();
     const allBreeds = useSelector((state) => state.reducerBreeds); 
     const ReducerTemperaments = useSelector((state) => state.allTemperaments);
-    const allTemperaments = ReducerTemperaments.map((g) => g.name);
+    const allTemperaments = ReducerTemperaments.map((g) => g);
    
     
     const [_order, setOrden] = useState("");
@@ -35,7 +35,7 @@ export default function Home() {
     //------------------------------
 
     useEffect(() => {
-        dispatch(getVideoGames()) 
+        dispatch(getBreeds()) 
         dispatch(getTemperaments())
     }, [dispatch]) 
 
@@ -43,7 +43,7 @@ export default function Home() {
 
     function handleClick(e) {
         e.preventDefault(); 
-        dispatch(getVideoGames());
+        dispatch(getBreeds());
     }
 
     function handleFilterCreated(e) {
@@ -54,7 +54,6 @@ export default function Home() {
     }
 
     function handleFilterTemperament(e) {
-       console.log(e.target.value)
         dispatch(filterByTemperament(e.target.value));
         setCurrentPage(1);
         setOrden(e.target.value);

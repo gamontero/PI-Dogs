@@ -8,14 +8,15 @@ export default function NavBar() {
     < div >
       <header className={styles.container}>
         <div >
-          <Link to="/"className={styles.Title}>Arcade</Link>
-        </div>
-        <div >
-           <Link className={styles.link1} to='/createbreed'> Create</Link>
+          <Link to="/"className={styles.Title}>Welcome</Link>
         </div>
         <div>
           <Link className={styles.link1} to="/home">Home</Link>
         </div>
+        <div >
+           <Link className={styles.link1} to='/createbreed'> Create</Link>
+        </div>
+        
       </header> 
     </div>
     );
