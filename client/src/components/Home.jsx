@@ -70,6 +70,8 @@ export default function Home() {
         setOrden(e.target.value);
     }
 
+
+
     // -----------------------------------------
     return (
         <div className={styles.mainscreen}>
@@ -87,20 +89,20 @@ export default function Home() {
                  {/* filtros y ordenamientos */}
                 <div className={styles.span1}>
                     <span>
-                    <select className={styles.formStyle} defaultValue={"DEFAULT"} onChange={e => handleSort(e)}>
+                    <select className={styles.formStyle} selected="false" defaultValue={"DEFAULT"} onChange={e => handleSort(e)}>
                         <option  value="DEFAULT" name="DEFAULT">Order ⇵</option>
                         <option value='asc'>A-Z</option>
                         <option value='desc'>Z-A </option>
                     </select>
 
-                    <select className={styles.formStyle}  defaultValue={"DEFAULT"} onChange={e => handleScore(e)}>
+                    <select className={styles.formStyle}  selected="false" defaultValue={"DEFAULT"} onChange={e => handleScore(e)}>
                         <option value="DEFAULT">Weight ⇵ </option>
                         <option value='top'>Highest </option>
                         <option value='low'> Lowest </option>
                     </select>
 
 
-                    <select className={styles.formStyle} name="filterTemperaments" defaultValue={"DEFAULT"} onChange={e => handleFilterTemperament(e)}>
+                    <select className={styles.formStyle} selected="false" name="filterTemperaments" defaultValue={"DEFAULT"} onChange={e => handleFilterTemperament(e)}>
                         <option value="DEFAULT" >Filter by Temperament</option>
                         <option value='all'>All Temperament</option>
                         {allTemperaments.map((temperament) => (
@@ -109,8 +111,8 @@ export default function Home() {
                             </option>
                         ))};
                     </select>
-                    
-                    <select className={styles.formStyle} defaultValue={"DEFAULT"} onChange={e => handleFilterCreated(e)} >
+
+                    <select className={styles.formStyle} selected="false" defaultValue={"DEFAULT"} onChange={e => handleFilterCreated(e)} >
                         <option value="DEFAULT">Breeds</option>
                         <option value='all'>All</option>
                         <option value='created'>Created </option>

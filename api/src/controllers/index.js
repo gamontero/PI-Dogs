@@ -41,7 +41,7 @@ const getDBInfo = async () => {     // fc para obtener todos las razas de la B D
                temperament: g.dataValues.temperaments.map(g => g.name)
             }        
         });
-        console.log(dbDatos)
+        
         return dbDatos;    
     } catch (e) {
         return('No se pudo acceder a la BD',e)        
@@ -97,17 +97,53 @@ const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD x 
     
 }
 
-const getTempAPI = async () => {  
-    try {  
-        const tempApi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-        const tempDb = tempApi.data.map( el => el.temperament ).join().split(',')
+const getTempAPI =  () => {  
+   try {
+       return  axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
+       .then((response) => {
+        const tempDb = response.data.map( el => el.temperament ).join().split(',')
         const tempsDbTrim = tempDb.map( el => el.trim())
-        
+
         return tempsDbTrim;
-    } catch (e) {
+       
+       
+   
+    })} catch (e) {
         res.status(404).json('Temp Controller problem')   
-    }    
-}
+    }}
+        
+
+
+// const getTempAPI = async () => {  
+//     try {  
+//         const tempApi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
+//         const tempDb = tempApi.data.map( el => el.temperament ).join().split(',')
+//         const tempsDbTrim = tempDb.map( el => el.trim())
+        
+//         return tempsDbTrim;
+//     } catch (e) {
+//         res.status(404).json('Temp Controller problem')   
+//     }    
+// }
+
+
+// export function getDetail(id) {
+//     return  function (dispatch) {
+         
+//             // let payload = await axios.get(`/dogs?id=${id}`);
+//           return axios.get(`/dogs/${id}`)
+//             .then((response) => {dispatch({
+//               type: "GET_DETAIL",
+//               payload: response.data,
+//             })
+              
+//           })
+//           .catch ((error) => {
+//             alert("Breed Not Found Front", error)
+//           })
+//         }
+//       }
+
 
 module.exports = {
     getInfoAPI,

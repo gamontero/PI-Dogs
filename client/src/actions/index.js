@@ -52,19 +52,36 @@ export function getBreedbyName(name) {
   }
 
 export function getDetail(id) {
-  return async function (dispatch) {
-        try {
+  return  function (dispatch) {
+       
           // let payload = await axios.get(`/dogs?id=${id}`);
-        let payload = await axios.get(`/dogs/${id}`);
-            return dispatch({
+        return axios.get(`/dogs/${id}`)
+          .then((response) => {dispatch({
             type: "GET_DETAIL",
-            payload: payload.data,
-          });
-        } catch (error) {
+            payload: response.data,
+          })
+            
+        })
+        .catch ((error) => {
           alert("Breed Not Found Front", error)
-        }
-      };
+        })
+      }
     }
+
+    // export function getDetail(id) {
+    //   return async function (dispatch) {
+    //         try {
+    //           // let payload = await axios.get(`/dogs?id=${id}`);
+    //         let payload = await axios.get(`/dogs/${id}`);
+    //             return dispatch({
+    //             type: "GET_DETAIL",
+    //             payload: payload.data,
+    //           });
+    //         } catch (error) {
+    //           alert("Breed Not Found Front", error)
+    //         }
+    //       };
+    //     }
   
 export function getTemperaments() {
     return async function (dispatch) {
@@ -128,6 +145,7 @@ export function orderByWeight(payload) {
       payload,
     };
   }
+
 
 
 

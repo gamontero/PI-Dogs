@@ -3,7 +3,7 @@ const router = Router();
 const { Dog, Temperament } = require("../db");
 
 router.post("/", async (req, res) => {
-  const { name, heightMin, heightMax, weightMin, weightMax, life_spanMin, life_spanMax, temperaments, description } = req.body;
+  const { name, heightMin, heightMax, weightMin, weightMax, life_spanMin, life_spanMax, temperaments } = req.body;
 
   if (!name || !heightMax || !heightMin || !weightMax || !weightMin) {
     //database validation
@@ -15,8 +15,10 @@ router.post("/", async (req, res) => {
       height: heightMin + "-" + heightMax,
       weight: weightMin + "-" + weightMax,
       life_span: life_spanMin + "-" + life_spanMax + " years",
-      description,
+      
     });
+
+  
 
     if (!temperaments) {
       res.send("Breed created without temperament(s)");

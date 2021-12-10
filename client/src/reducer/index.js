@@ -4,7 +4,7 @@ const initialState = {
   allBreeds: [],
   allTemperaments: [],
   detail: [],
-  origen: [], 
+ 
 };
 
 
@@ -91,14 +91,14 @@ function rootReducer(state = initialState, action) {
           
           state.reducerBreeds.sort(function (a, b) {
             if (
-              Number(a.weight.split(' - ')[1]) >
-              Number(b.weight.split(' - ')[1])
+              parseInt(a.weight.split(' - ')[1]) >
+              parseInt(b.weight.split(' - ')[1])
             ) {
               return -1;
             }
             if (
-              Number(b.weight.split(' - ')[1]) >
-              Number(a.weight.split(' - ')[1])
+              parseInt(b.weight.split(' - ')[1]) >
+              parseInt(a.weight.split(' - ')[1])
             ) {
               return 1;
             }
@@ -124,9 +124,9 @@ function rootReducer(state = initialState, action) {
         ...state,
         reducerBreeds: sortWeight,
       };
-      
-        case "GET_DETAIL":
-       
+
+        
+    case "GET_DETAIL":
       return {
         ...state,
         detail: action.payload,
