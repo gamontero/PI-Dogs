@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import styles from "./Detail.module.css"
 import background from "../media/Dog3.jpeg"
 
-export default function Detail(props) {
+export default function Detail() {
 const { id } = useParams();
 const dispatch = useDispatch();
 let detail = useSelector((state) => state.detail);

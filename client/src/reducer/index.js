@@ -50,16 +50,7 @@ function rootReducer(state = initialState, action) {
       };
 
     
-      case "FILTER_BY_ORIGEN": 
-     
-      let origenFiltered = action.payload === "all" ? state.allBreeds : state.allBreeds.filter((g) => g.origen.includes(action.payload));
-      return {
-        ...state,
-        reducerBreeds: origenFiltered,
-      };
-
-
-  
+ 
     case "FILTER_CREATED":
       
        const createdFilter = action.payload === 'all' ? state.allBreeds : action.payload === "API" ? state.reducerBreeds.filter((g) => !g.createdID) :  state.reducerBreeds.filter((g) => g.createdID);
@@ -72,19 +63,19 @@ function rootReducer(state = initialState, action) {
       let sort =
         action.payload === "asc"
           ? state.reducerBreeds.sort(function (a, b) {
-            if (a.name > b.name) {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
               return 1;
             }
-            if (b.name > a.name) {
+            if (b.name.toLowerCase() > a.name.toLowerCase()) {
               return -1;
             }
             return 0;
           })
           : state.reducerBreeds.sort(function (a, b) {
-            if (a.name > b.name) {
+            if (a.name.toLowerCase() > b.name.toLowerCase()) {
               return -1;
             }
-            if (b.name > a.name) {
+            if (b.name.toLowerCase() > a.name.toLowerCase()) {
               return 1;
             }
             return 0;

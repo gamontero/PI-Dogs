@@ -78,7 +78,7 @@ export default function Home() {
             </div>
                         
             <button className={styles.btn31} onClick={e => { handleClick(e) }}> 
-                Reload
+                Erase Filters
             </button>
             <div className={styles.container2}>
                 <SearchBar />
@@ -99,6 +99,7 @@ export default function Home() {
                         <option value='low'> Lowest </option>
                     </select>
 
+
                     <select className={styles.formStyle} name="filterTemperaments" defaultValue={"DEFAULT"} onChange={e => handleFilterTemperament(e)}>
                         <option value="DEFAULT" >Filter by Temperament</option>
                         <option value='all'>All Temperament</option>
@@ -108,13 +109,15 @@ export default function Home() {
                             </option>
                         ))};
                     </select>
-
+                    
                     <select className={styles.formStyle} defaultValue={"DEFAULT"} onChange={e => handleFilterCreated(e)} >
                         <option value="DEFAULT">Breeds</option>
                         <option value='all'>All</option>
                         <option value='created'>Created </option>
                         <option value='API'>API</option>
                     </select>
+
+
                     </span>
                 </div>
                 

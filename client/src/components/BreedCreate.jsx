@@ -105,6 +105,7 @@ export default function GameCreated() {
     life_spanMin: "",
     life_spanMax: "",
     temperaments: [],
+    
    
   });
 
@@ -173,7 +174,6 @@ export default function GameCreated() {
     );
     
     if (!Object.getOwnPropertyNames(error).length && input.name && input.heightMin && input.heightMax && input.weightMin && input.weightMax && input.life_spanMin && input.life_spanMax && input.temperaments.length) {
-      console.log(input)
       dispatch(postBreed(input));
       alert("Breed created!");
       setInput({
@@ -220,6 +220,7 @@ export default function GameCreated() {
               {error.name && <p className={styles.errors}>{error.name}</p>}
                </div>
             </div>
+      
             <div>
               <label className={styles.label}>Height Min: </label>
               <div className={styles.formStyle}>

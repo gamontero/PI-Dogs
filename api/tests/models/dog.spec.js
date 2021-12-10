@@ -1,5 +1,6 @@
-const { Dog, conn } = require('../../src/db.js');
+const { Dog, Temperament ,conn } = require('../../src/db.js');
 const { expect } = require('chai');
+
 
 describe('Dog model', () => {
   before(() => conn.authenticate()
@@ -22,18 +23,14 @@ describe('Validators', () => {
   });
 });
 
-describe(' create dogs ', () => {
-  beforeEach(()=> {
-    Dog.bulkCreate(dogs)
-  })
-
-  describe('search dog', () => {
-    
-    it('length db', done => {
-      Dog.findAll()
-      .then(r => expect(r.length).to.be(2))    
-      .catch(() => done())
+describe('Find All Temperaments in database', function() {
+    it('should have length 125, this has been pre-charged',  function() {
+      Temperament.findAll()
+      .then(function (res){
+        expect(res.body).to.be.have.length(125) 
+      });
     });
-   
-})
-})
+  });
+
+
+
