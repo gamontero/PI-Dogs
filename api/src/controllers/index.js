@@ -4,7 +4,7 @@ const { Dog, Temperament } = require('../db');
 
 //FUNCIONES QUE UTILIZA LA RUTA /Dogs
 
-const getInfoAPI = async () => {  // Fc para obtener todas las razas de la API
+const getInfoAPI = async () => {  
     try {
         const urlApi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
         const infoApi = urlApi.data.map(el => {
@@ -16,6 +16,7 @@ const getInfoAPI = async () => {  // Fc para obtener todas las razas de la API
                 life_span: el.life_span,
                 temperament: [el.temperament].join().split(",").map((el) => el.trim()),
                 weight: el.weight.imperial,
+                origin: el.origin
             }
         })
         return infoApi;
@@ -25,7 +26,7 @@ const getInfoAPI = async () => {  // Fc para obtener todas las razas de la API
     }    
 }
 
-const getDBInfo = async () => {     // fc para obtener todos las razas de la B Datos, junto con los temperamentos
+const getDBInfo = async () => {    
     try {      
         const dogsDB =  await Dog.findAll({
             include: Temperament

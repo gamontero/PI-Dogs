@@ -53,7 +53,7 @@ function rootReducer(state = initialState, action) {
  
     case "FILTER_CREATED":
       
-       const createdFilter = action.payload === 'all' ? state.allBreeds : action.payload === "API" ? state.reducerBreeds.filter((g) => !g.createdID) :  state.reducerBreeds.filter((g) => g.createdID);
+       const createdFilter = action.payload === 'all' ? state.allBreeds : action.payload === "API" ? state.allBreeds.filter((g) => !g.createdID) :  state.allBreeds.filter((g) => g.createdID);
       return {
         ...state,
         reducerBreeds: createdFilter,

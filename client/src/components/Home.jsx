@@ -101,7 +101,6 @@ export default function Home() {
                         <option value='low'> Lowest </option>
                     </select>
 
-
                     <select className={styles.formStyle} selected="false" name="filterTemperaments" defaultValue={"DEFAULT"} onChange={e => handleFilterTemperament(e)}>
                         <option value="DEFAULT" >Filter by Temperament</option>
                         <option value='all'>All Temperament</option>

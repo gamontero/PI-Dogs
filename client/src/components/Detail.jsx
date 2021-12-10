@@ -46,6 +46,11 @@ return (
             </p>
 
             <p>
+              <strong>origin: </strong> {detail.origin}
+            </p>
+
+
+            <p>
               <strong>Temperament: </strong>
               {detail.temperament + ', '}
             </p>
