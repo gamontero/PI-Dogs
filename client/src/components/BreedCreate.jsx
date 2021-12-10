@@ -322,7 +322,7 @@ export default function GameCreated() {
 
             <div>
                 <label className={styles.label}>Temperament: </label>
-                <select name="temperaments" onChange={(e) => handleSelectTemperaments(e)}>
+                <select name="temperaments" onChange={(e) => handleSelectTemperaments(e)} required>
                      {allTemperaments.map((g) => (             
                          <option value={g} key={g.id}> {g}</option>))} 
                 </select>

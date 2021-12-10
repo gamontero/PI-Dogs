@@ -14,7 +14,6 @@ export default function Home() {
     const allBreeds = useSelector((state) => state.reducerBreeds); 
     const ReducerTemperaments = useSelector((state) => state.allTemperaments);
     const allTemperaments = ReducerTemperaments.map((g) => g);
-   
     
     const [_order, setOrden] = useState("");
     
@@ -38,8 +37,6 @@ export default function Home() {
         dispatch(getBreeds()) 
         dispatch(getTemperaments())
     }, [dispatch]) 
-
-
 
     function handleClick(e) {
         e.preventDefault(); 

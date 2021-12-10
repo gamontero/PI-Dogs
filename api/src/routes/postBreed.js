@@ -5,8 +5,6 @@ const { Dog, Temperament } = require("../db");
 router.post("/", async (req, res) => {
   const { name, heightMin, heightMax, weightMin, weightMax, life_spanMin, life_spanMax, temperaments } = req.body;
 
-  console.log(temperaments)
-
   if (!name || !heightMax || !heightMin || !weightMax || !weightMin) {
     //database validation
     return res.status(404).send("data missing backend ");

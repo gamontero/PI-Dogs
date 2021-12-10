@@ -7,7 +7,6 @@ const { Dog, Temperament } = require('../db');
 const getInfoAPI = async () => {  // Fc para obtener todas las razas de la API
     try {
         const urlApi= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-        
         const infoApi = urlApi.data.map(el => {
             return {
                 id: el.id,
@@ -17,7 +16,6 @@ const getInfoAPI = async () => {  // Fc para obtener todas las razas de la API
                 life_span: el.life_span,
                 temperament: [el.temperament].join().split(",").map((el) => el.trim()),
                 weight: el.weight.imperial,
-                origen: el.origin,
             }
         })
         return infoApi;
@@ -32,7 +30,6 @@ const getDBInfo = async () => {     // fc para obtener todos las razas de la B D
         const dogsDB =  await Dog.findAll({
             include: Temperament
         });   
-        console.log(dogsDB)
         const dbDatos=dogsDB.map(g => {
             return {
                id: g.dataValues.id,
@@ -42,9 +39,7 @@ const getDBInfo = async () => {     // fc para obtener todos las razas de la B D
                life_span: g.dataValues.life_span,
                createdID: g.dataValues.createdID,
                temperament: g.dataValues.temperaments.map(g => g.name)
-            }
-           
-
+            }        
         });
         console.log(dbDatos)
         return dbDatos;    
@@ -82,7 +77,6 @@ const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD x 
             include: Temperament,
         })]
         if(oneDogBD){  
-           console.log(oneDogBD)
             const dbDatos=oneDogBD.map(g => {
                 return {
                    id: g.dataValues.id,
@@ -92,11 +86,9 @@ const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD x 
                    life_span: g.dataValues.life_span,
                    createdID: g.dataValues.createdID,
                    temperament: g.dataValues.temperaments.map(g => g.name)
-                }
-    
+                }    
             });
-            console.log(dbDatos)
-           
+                    
             return dbDatos;    
         }
     } catch (error) {
@@ -104,25 +96,6 @@ const getOneByIdBD = async function(idRaza){// Para encontrar un dog en la BD x 
     }
     
 }
-
-
-const addTemperaments = async function(t,d){// agrega los temperamentos pasados en el array, al crear un dog
-
-    t=capitalizar(t);
-    var [temp, creado]= await Temperament.findOrCreate({
-        where: {nameTemp: t}
-    })
-    await d.addTemperaments(temp); //vincula el perro con el temperamento
-    //await temp.addDogs(d); //vincula el temperamento con el perro 
-    
-}
-
-const capitalizar = function(str){    // capitaliza un string
-        return str.replace(/\w\S*/g, function(txt){
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-        });
-}
-
 
 const getTempAPI = async () => {  
     try {  
@@ -142,7 +115,5 @@ module.exports = {
     getAllData,
     getOneByIdAPI,
     getOneByIdBD,
-    addTemperaments,
-    capitalizar,
     getTempAPI
 }

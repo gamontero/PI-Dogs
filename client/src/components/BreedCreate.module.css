@@ -85,7 +85,7 @@
   text-align: center;
   border: none;
   background-color: black;
-  color: darkred;
+  color:rgb(212, 116, 26);
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
   
 }
@@ -96,7 +96,7 @@
   box-shadow: 0 4px 20px 0 rgba(16,39,112,.2);
 }
 .btn:hover{  
-  background-color: darkred;
+  background-color: rgb(212, 116, 26);
   color: black;
   box-shadow: 4 8px 24px 0 rgba(16,39,112,.2);
 }
@@ -110,7 +110,7 @@
   display: flex;
   margin-bottom: 1%;
   text-decoration: underline;
-  text-decoration-color: darkred;
+  text-decoration-color: rgb(212, 116, 26);;
   
 }
 .formStyle {

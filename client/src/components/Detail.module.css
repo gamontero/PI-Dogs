@@ -3,23 +3,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-   
     background-color: #582401;;
+    background-repeat: repeat;
     border-style: solid;
     border-color: black;
     flex-wrap: wrap;
     text-align: center;
-    margin-top: 15%;
-    
-  }
-/* 
-body {
-background-color: #ffeba7;
-
-} */
+    margin-top: 15%; 
+ }
 
 .textContainer { 
-
   margin: 0,5%;
   background-color: #8f5128;
 }
@@ -27,41 +20,39 @@ background-color: #ffeba7;
 .mainContainer {
   background-size: cover;
   background-color: #ffeba7;    
- position:static;
+  position:static;
   display: flex;
   align-items: center;
   justify-content: center;
   background: url("../media/Dog1.jpeg");
   background-size: cover;
   position:relative;
- 
   background-repeat: no-repeat;
 }
 
-  .descriptionS {
-    margin-left: 1cm;
-    margin-right: 1cm;
-  }
+.descriptionS {
+  margin-left: 1cm;
+  margin-right: 1cm;
+}
 
-  .gameDetails {
-    font-size: 1.5rem;
-  }
-  .imgDetail {
-    border-radius: 10px;
-    width: 300px;
-    height: 380px;
-    display: flex;
-  }
+.gameDetails {
+  font-size: 1.5rem;
+}
+
+.imgDetail {
+  border-radius: 10px;
+  width: 300px;
+  height: 380px;
+  display: flex;
+}
   
-  .firstItem {
-    margin-top: 0;
-  }
+.firstItem {
+  margin-top: 0;
+}
   
- 
-  
-  @media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1000px) {
     .detailContainer {
       flex-direction: column;
       width: auto;
     }
-  }
+}

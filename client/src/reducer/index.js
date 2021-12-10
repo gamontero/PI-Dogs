@@ -4,7 +4,7 @@ const initialState = {
   allBreeds: [],
   allTemperaments: [],
   detail: [],
- 
+  origen: [], 
 };
 
 
@@ -19,9 +19,11 @@ function rootReducer(state = initialState, action) {
 
 
     case "GET_TEMPERAMENTS":
+      let allTemperaments1 = action.payload.map(g => g.name);
       return {
         ...state,
-        allTemperaments: action.payload.map(g => g.name),
+        
+        allTemperaments: allTemperaments1.sort()
           
       };
 
@@ -32,7 +34,7 @@ function rootReducer(state = initialState, action) {
       };
 
 
-    case "POST_VIDEOGAME": 
+    case "POST_BREED": 
       return {
         ...state,
 
@@ -47,13 +49,23 @@ function rootReducer(state = initialState, action) {
         reducerBreeds: breedFiltered,
       };
 
+    
+      case "FILTER_BY_ORIGEN": 
+     
+      let origenFiltered = action.payload === "all" ? state.allBreeds : state.allBreeds.filter((g) => g.origen.includes(action.payload));
+      return {
+        ...state,
+        reducerBreeds: origenFiltered,
+      };
+
+
   
     case "FILTER_CREATED":
       
-       const createdFilter = action.payload === "API" ? state.allBreeds.filter((g) => !g.createdID) : state.allBreeds.filter((g) => g.createdID);
+       const createdFilter = action.payload === 'all' ? state.allBreeds : action.payload === "API" ? state.reducerBreeds.filter((g) => !g.createdID) :  state.reducerBreeds.filter((g) => g.createdID);
       return {
         ...state,
-        reducerBreeds: action.payload === 'all' ? state.allBreeds : createdFilter,
+        reducerBreeds: createdFilter,
       };
 
     case "ORDER_BY_NAME":

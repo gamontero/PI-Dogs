@@ -4,32 +4,22 @@ import { useParams } from "react-router-dom";
 import { getDetail } from "../actions/index";
 import NavBar from "./NavBar";
 import styles from "./Detail.module.css"
-
+import background from "../media/Dog3.jpeg"
 
 export default function Detail(props) {
-  
 const { id } = useParams();
 const dispatch = useDispatch();
+let detail = useSelector((state) => state.detail);
+
 
 useEffect(() => {
     dispatch(getDetail(id));
   }, [id, dispatch]);
 
-
-  let detail = useSelector((state) => state.detail);
-
-console.log(Array.isArray(detail));
-console.log(detail)
-console.log(detail[0])
-
-  if (Array.isArray(detail) === true)  {
+if (Array.isArray(detail) === true)  {
     detail = detail[0]
   } 
-  console.log(detail)
-  
-
-const defaultImage = "https://cdnb.artstation.com/p/assets/images/images/036/628/681/4k/ivanov-alvarado-arcade-stylized-video-game-asset-1.jpg?1618196293"
-
+ 
 return (
     <div>
       {!detail ? (
@@ -47,7 +37,7 @@ return (
         <div className={styles.mainContainer}>
           <div className={styles.detailContainer}>
             <div className={styles.imageContainer}>
-          <img src={detail.image || defaultImage} className={styles.imgDetail}  alt="img not found"
+          <img src={detail.image || background} className={styles.imgDetail}  alt="img not found"
                 />
             </div>
           <div className={styles.textContainer}>

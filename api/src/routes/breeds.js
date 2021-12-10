@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const router = Router();
-const { Dog, Temperament } = require("../db");
 const { getAllData, getOneByIdAPI, getOneByIdBD } = require('../controllers');
 
 router.get('/', async (req, res) => {
@@ -24,14 +23,10 @@ router.get('/', async (req, res) => {
   });
 
 
-
-
 router.get('/:idRaza', async (req,res)=> {  // ruta para encontrar una raza en particular (el front me manda la id), 
                                             
     var {idRaza}=req.params;
-  
-    
-   
+      
     try {
         if(idRaza.includes("-")){  // es por que es una id de UUID => de mi bd
 
@@ -42,7 +37,7 @@ router.get('/:idRaza', async (req,res)=> {  // ruta para encontrar una raza en p
                 res.send('Breed DB not found')
             }
         }else{   // busca en la Api
-            var oneDog= await getOneByIdAPI(idRaza); //fc que busca un dog en la Api x id
+            const oneDog= await getOneByIdAPI(idRaza); //fc que busca un dog en la Api x id
             if (oneDog){
                 res.status(200).json(oneDog);
             }else{
