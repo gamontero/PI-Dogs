@@ -23,7 +23,7 @@ export default function Home() {
     //PAGINADO ------------
     const [currentPage, setCurrentPage] = useState(1)
     const BreedsPerPage = 8 // aca defino los personajes por pagina 
-    const indexOfLastBreed = currentPage * BreedsPerPage // en el estado incial el indexoflast... es 15, xq es el ultimo de la pagina actual (la 1 en el estado inicial)
+    const indexOfLastBreed = currentPage * BreedsPerPage // en el estado incial el indexoflast... es 8, xq es el ultimo de la pagina actual (la 1 en el estado inicial)
     const indexOfFirstBreed = indexOfLastBreed - BreedsPerPage // deberia ser 0, el inicio 
     const currentBreed = allBreeds.slice(indexOfFirstBreed, indexOfLastBreed)
 

@@ -34,18 +34,6 @@ describe(' create dogs ', () => {
       .then(r => expect(r.length).to.be(2))    
       .catch(() => done())
     });
-
-    it('name Dog', done => {
-      Dog.findAll()
-      .then(r => expect(r[0].name).to.be.true('ChupaHuevo'))
-      .catch(() => done())
-    });
-    
-    it('fake name Dog', done => {
-      Dog.findAll()
-      .then(r => expect(r[1].name).to.be.false('ChupaHuevo'))
-      .catch(() => done())
-    });
-  })
+   
 })
-
+})
