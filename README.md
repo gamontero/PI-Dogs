@@ -1,9 +1,11 @@
 
-## Objetives
+## About the project
 
 - Develop an App using React, Redux, Node y Sequelize.
 
 The general idea is to develop and app where you can find and create different dog breeds alongside relevant information. In addition, the main purpose is to show stacks and functionalities. It will change based technologies learned.  
+
+## Getting started
 
  1. Fork and clone the repository. 
 
@@ -12,10 +14,8 @@ Minimum required versions:
  * __Node__: 12.18.3 or higher
  * __NPM__: 6.14.16 or higher
 
-2. In terminal for client and api folders: npm i 
+2. Install NPM packa: npm install 
 
-
-## BoilerPlate
 
 boilerplate includes two folders: `api` and `client` (back-end and front-end).
 
