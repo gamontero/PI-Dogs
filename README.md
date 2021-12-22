@@ -7,7 +7,7 @@ The general idea is to develop and app where you can find and create different d
 
 
 <div align="center">
-     <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.01.01.png" alt="Logo" width="150" height="150">
+     <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.01.01.png" alt="Logo" width="500" height="400">
 </div>
 
 ## Getting started
