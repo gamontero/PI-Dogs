@@ -14,14 +14,24 @@ The general idea is to develop and app where you can find and create different d
 
 ## Getting started
 
- 1. Fork and clone the repository. 
-
 Minimum required versions:
 
  * __Node__: 12.18.3 or higher
  * __NPM__: 6.14.16 or higher
 
-2. Install NPM packa: npm install 
+1. 
+2. Clone the repo
+   ```sh
+   git clone https://github.com/gamontero/PI-Dogs.git
+   ```
+3. Install NPM packages (api and client folders)
+   ```sh
+   npm install
+   ```
+4. Start Node app and react app
+   ```sh
+   npm start
+   ```
 
 
 boilerplate includes two folders: `api` and `client` (back-end and front-end).
