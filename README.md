@@ -7,9 +7,9 @@ The general idea is to develop and app where you can find and create different d
 
 
 <div align="center">
-     <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.01.01.png" alt="Logo" width="500" height="400">
-      <img src=https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.02.53.png alt="Logo" width="500" height="400">
-      <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.03.19.png" alt="Logo" width="500" height="400">
+     <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.01.01.png" alt="Logo" width="500" height="350">
+      <img src=https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.02.53.png alt="Logo" width="500" height="350">
+      <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.03.19.png" alt="Logo" width="500" height="350">
 </div>
 
 ## Getting started
