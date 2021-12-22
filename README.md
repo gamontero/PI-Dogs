@@ -5,6 +5,11 @@
 
 The general idea is to develop and app where you can find and create different dog breeds alongside relevant information. In addition, the main purpose is to show stacks and functionalities. It will change based technologies learned.  
 
+
+<div align="center">
+     <img src="https://github.com/gamontero/PI-Dogs/blob/main/images/Screen%20Shot%202021-12-22%20at%2001.01.01.png" alt="Logo" width="150" height="150">
+</div>
+
 ## Getting started
 
  1. Fork and clone the repository. 
