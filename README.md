@@ -1,9 +1,9 @@
 
 ## Objetives
 
-- Develop and App using React, Redux, Node y Sequelize.
+- Develop an App using React, Redux, Node y Sequelize.
 
-The general idea is to develop and app where you can find and create different dog breeds alongside relevant information. In addition, the main purpose is to show stacks and code pratices. It will change based technologies learned.  
+The general idea is to develop and app where you can find and create different dog breeds alongside relevant information. In addition, the main purpose is to show stacks and functionalities. It will change based technologies learned.  
 
  1. Fork and clone the repository. 
 
